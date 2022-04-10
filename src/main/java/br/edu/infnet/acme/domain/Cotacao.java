@@ -1,5 +1,7 @@
 package br.edu.infnet.acme.domain;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class Cotacao {
     private Double valor;
     private Date dataDeCadastro;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "produto_id")
     private Produto produto;
