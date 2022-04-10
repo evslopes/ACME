@@ -49,10 +49,10 @@ public class CotacaoController {
         Produto produto;
         produto = produtoRepository.findById(id).orElse(null);
         if (produto != null) {
-            List<Cotacao> cotacaos = new ArrayList<>();
-            cotacaos.add(cotacao);
-            cotacao.setProduto(produtoRepository.findById(produto.getId()).orElse(null));
-            produto.setCotacao(cotacaos);
+            List<Cotacao> cotacoes = new ArrayList<>();
+            cotacoes.add(cotacao);
+            cotacao.setProdutos(produtoRepository.findAll(produto.getId()));
+            produto.setCotacao(cotacoes);
             return produtoRepository.save(produto);
         } else
             return null;

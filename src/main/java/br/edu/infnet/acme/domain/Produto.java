@@ -1,5 +1,7 @@
 package br.edu.infnet.acme.domain;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,8 +16,8 @@ public class Produto {
     private String tipo;
     private String img;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cotacao_id",  nullable = true)
+
+    @ManyToMany(mappedBy = "produtos")
     private List<Cotacao> cotacao;
 
     public Produto() {

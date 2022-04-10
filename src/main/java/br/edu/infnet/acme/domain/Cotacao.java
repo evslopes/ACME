@@ -4,6 +4,7 @@ import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Cotacao {
@@ -17,9 +18,9 @@ public class Cotacao {
     private Date dataDeCadastro;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
+    @ManyToMany(cascade = CascadeType.DETACH)
+    private List<Produto> produtos;
+
 
     public Cotacao() {
     }
@@ -56,11 +57,11 @@ public class Cotacao {
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 }
